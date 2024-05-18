@@ -6,7 +6,7 @@ You will find many projects here each having their own docs so don't worry about
 Deployment Link 
 todoapp - https://to-do-app-lemon-one.vercel.app/
 
-Something about the projects 
+Something about the projects /n
 Inventory Management - Utilizes PERN
 stack for CRUD operations to store and
 view inventory, uses Recharts for analysis,
