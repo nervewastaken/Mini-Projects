@@ -1,0 +1,56 @@
+/* addcomment.css */
+.add-comment-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .blog-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .blog-content {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .comment-container {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-content {
+    font-size: 14px;
+  }
+  
+  .comment-author {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .comment-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .comment-submit {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .comment-submit:hover {
+    background-color: #0056b3;
+  }
+  

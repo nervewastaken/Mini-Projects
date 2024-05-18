@@ -1,0 +1,214 @@
+.container {
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  position: fixed;
+}
+
+.content {
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+.toggle-button {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  z-index: 5;
+}
+
+.space {
+  margin-top: 30px;
+}
+
+.maindiv {
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  margin-left: 50px;
+  background-color: greenyellow;
+}
+
+.line {
+  height: 5px;
+  width: 100%;
+  background-color: black;
+}
+
+.main {
+  z-index: 1;
+}
+
+.susdiv {
+  justify-content: center;
+  text-align: center;
+}
+
+/* App.css */
+
+.aboutus {
+  background-color: black;
+  color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1; /* Set z-index lower */
+}
+
+.navbars {
+  background-color: black;
+  overflow: hidden;
+  height: 50px;
+}
+
+.active {
+  background-color: #4caf50;
+}
+
+.btn {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-size: large;
+}
+
+.login-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("./images/image.jpeg"); /* Background image URL */
+  background-size: cover;
+  background-position: center;
+}
+
+.login-box {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.hero {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* CSS */
+.button-64 {
+  align-items: center;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 250px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-64:active,
+.button-64:hover {
+  outline: 0;
+}
+
+.button-64 span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.button-64:hover span {
+  background: none;
+}
+
+@media (min-width: 768px) {
+  .button-64 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+.mainhero {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  background-image: url(./images/bgimage.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.plus {
+  background: #333;
+  height: 50px;
+  position: relative;
+  width: 8px;
+}
+.plus:after {
+  background: #333;
+  content: "";
+  height: 8px;
+  left: -21px;
+  position: absolute;
+  top: 21px;
+  width: 50px;
+}

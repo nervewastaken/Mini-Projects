@@ -1,0 +1,40 @@
+/* ucomment.css */
+
+.ucomment-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .ucomment-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .ucomment-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ucomment-label {
+    margin-bottom: 10px;
+  }
+  
+  .ucomment-textarea {
+    height: 200px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .ucomment-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .ucomment-button:hover {
+    background-color: #0056b3;
+  }
+  
