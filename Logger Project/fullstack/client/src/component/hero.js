@@ -1,10 +1,12 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
+
 
 const Hero = () => {
   const [logs, setLogs] = useState([]);
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [statusFilter, setStatusFilter] = useState('all');
-  const [sliderValue, setSliderValue] = useState(100);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   useEffect(() => {
     fetchLogs();
@@ -24,41 +26,64 @@ const Hero = () => {
   const handleStatusFilterChange = (e) => {
     const status = e.target.value;
     setStatusFilter(status);
-    if (status === 'all') {
-      setFilteredLogs(logs);
-    } else {
-      const filtered = logs.filter(log => log.status === status);
-      setFilteredLogs(filtered);
-    }
+    applyFilters(status, startDate, endDate);
   };
 
-  const handleSliderChange = (e) => {
-    const value = parseInt(e.target.value);
-    setSliderValue(value);
-    const filtered = logs.filter(log => new Date(log.logtime).getTime() >= new Date().getTime() - (value * 86400000)); // Convert days to milliseconds
+  const handleStartDateChange = (e) => {
+    const date = e.target.value;
+    setStartDate(date);
+    applyFilters(statusFilter, date, endDate);
+  };
+
+  const handleEndDateChange = (e) => {
+    const date = e.target.value;
+    setEndDate(date);
+    applyFilters(statusFilter, startDate, date);
+  };
+
+  const applyFilters = (status, start, end) => {
+    let filtered = logs;
+
+    if (status !== 'all') {
+      filtered = filtered.filter(log => log.status === status);
+    }
+
+    if (start) {
+      const startTime = new Date(start).getTime();
+      filtered = filtered.filter(log => new Date(log.logtime).getTime() >= startTime);
+    }
+
+    if (end) {
+      const endTime = new Date(end).getTime();
+      filtered = filtered.filter(log => new Date(log.logtime).getTime() <= endTime);
+    }
+
     setFilteredLogs(filtered);
   };
 
   return (
-    <div className="App">
-      <h1>Dashboard</h1>
+    <div className="app-container">
+      <h1 className="dashboard-title">Dashboard</h1>
 
       {/* Interactive Elements */}
-      <div>
-        <button onClick={fetchLogs}>Refresh Data</button>
-        <select value={statusFilter} onChange={handleStatusFilterChange}>
+      <div className="controls-container">
+        <button className="refresh-button" onClick={fetchLogs}>Refresh Data</button>
+        <select className="status-filter" value={statusFilter} onChange={handleStatusFilterChange}>
           <option value="all">All Data</option>
           <option value="active">Active</option>
           <option value="idle">Idle</option>
           <option value="charging">Charging</option>
         </select>
-        <label>Filter by days:</label>
-        <input type="range" min="1" max="100" value={sliderValue} onChange={handleSliderChange} />
-        <span>{sliderValue} days</span>
+        <div className="date-filters">
+          <label className="date-label">Start Date:</label>
+          <input className="date-input" type="datetime-local" value={startDate} onChange={handleStartDateChange} />
+          <label className="date-label">End Date:</label>
+          <input className="date-input" type="datetime-local" value={endDate} onChange={handleEndDateChange} />
+        </div>
       </div>
 
       {/* Table to display logs */}
-      <table>
+      <table className="logs-table">
         <thead>
           <tr>
             <th>Power (%)</th>
