@@ -1,3 +1,8 @@
+Hi!
+
+This is a firebase NextJS app no docs needed just fork the data and change the api keys in "firebase.js" to your own
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
