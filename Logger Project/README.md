@@ -13,6 +13,8 @@ PostgreSQL
 1) Database Name - loggingapp
 2) Table Name - logs
 3) Column names - Power, Status, posx, posy (logid, logtime update automatically)
+4) datatype - Power (NUMERIC) , Status (VARCHAR) , posx,posy (NUMERIC), logid (int, default increment), logtime (TIMESTAMP WITHOUT TIME ZONE , default CURRENT_TIMESTAMP)
+5) Change the parameters in /fullstack/server/database.js to your system
 
 Python
 1) create a virtual env in python
