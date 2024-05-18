@@ -21,3 +21,4 @@ Python
 2) download necessary packages from requirements.txt
 3) configure postgreSQL with the required columns and commands 
 
+While you are here do check out other projects!
