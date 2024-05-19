@@ -18,6 +18,7 @@ Blogger App - Utilizes PERN stack for
 CRUD operations for blogs, JWT and Bcrypt
 for authentication with an admin account
 (PgAdmin) for moderation.
+
 ToDo App - Utilizes NEXT.js with Firebase
 Google Auth and Cloud Firestore for CRUD
 operations for to-dos.
