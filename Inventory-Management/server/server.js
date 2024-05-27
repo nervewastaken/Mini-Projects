@@ -78,9 +78,7 @@ app.delete("/addprod/:prodid", async(req,res) => {
     }
 });
 
-
 //add inventory
-
 
 app.post("/addinventory/:prodid", async (req, res) => {
     try {
