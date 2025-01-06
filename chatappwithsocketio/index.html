@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Socket.IO chat</title>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const socket = io();
+            const form = document.getElementById('form');
+            const input = document.getElementById('input');
+            const usernameForm = document.getElementById('usernameForm');
+            const usernameInput = document.getElementById('usernameInput');
+            const messages = document.getElementById('messages');
+            let username;
+
+            usernameForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (usernameInput.value) {
+                    username = usernameInput.value;
+                    usernameForm.style.display = 'none';
+                    document.getElementById('chat').style.display = 'block';
+                }
+            });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (input.value && username) {
+                    socket.emit('chat message', { username, message: input.value });
+                    input.value = '';
+                }
+            });
+
+            socket.on('chat message', function (msg) {
+                const item = document.createElement('li');
+                item.textContent = `${msg.username}: ${msg.message}`;
+                messages.appendChild(item);
+                window.scrollTo(0, document.body.scrollHeight);
+            });
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #usernameForm, #chat {
+            display: none;
+        }
+
+        #usernameForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #form {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+
+        #input {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+        }
+
+        #input:focus {
+            outline: none;
+        }
+
+        #form>button {
+            background: #333;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages>li {
+            padding: 0.5rem 1rem;
+        }
+
+        #messages>li:nth-child(odd) {
+            background: #efefef;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="usernameForm">
+        <form>
+            <input id="usernameInput" placeholder="Enter your name" autocomplete="off" /><button type="submit">Join</button>
+        </form>
+    </div>
+    <div id="chat">
+        <ul id="messages"></ul>
+        <form id="form" action="">
+            <input id="input" autocomplete="off" /><button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+
+</html>

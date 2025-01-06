@@ -1,0 +1,8 @@
+.venv
+.idx
+/Scripts
+pyvenv.cfg
+Lib
+/.idx
+Include
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Background from Image</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-gray-100 text-gray-900 flex justify-center items-center h-screen"
+  >
+    <div class="w-full max-w-md px-4 py-8">
+      <form id="uploadForm" class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+          <label for="image" class="text-sm font-medium text-gray-700"
+            >Upload Image</label
+          >
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            required
+            class="mt-1 block w-full"
+          />
+        </div>
+        <button
+          type="submit"
+          class="bg-black text-white font-bold py-2 px-4 rounded hover:bg-red"
+        >
+          Upload
+        </button>
+      </form>
+
+      <div
+        id="drop_zone"
+        class="mt-8 border-4 border-dashed border-gray-300 rounded-lg p-6 text-center"
+      >
+        Drag and drop an image here or paste an image
+      </div>
+
+      <div id="result" class="mt-8"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const formData = new FormData();
+          const imageFile = document.getElementById("image").files[0];
+          formData.append("image", imageFile);
+
+          const response = await fetch("/remove_bg", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+            const url = URL.createObjectURL(blob);
+            document.getElementById(
+              "result"
+            ).innerHTML = `<h2 class="text-2xl font-bold">Image without Background</h2><img src="${url}" alt="Image without background" class="mt-4 max-w-full h-auto">`;
+          } else {
+            const result = await response.json();
+            document.getElementById(
+              "result"
+            ).innerText = `Error: ${result.error}`;
+          }
+        });
+
+      const dropZone = document.getElementById("drop_zone");
+
+      dropZone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        dropZone.classList.add("dragover");
+      });
+
+      dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+      });
+
+      dropZone.addEventListener("drop", async (event) => {
+        event.preventDefault();
+        dropZone.classList.remove("dragover");
+
+        const files = event.dataTransfer.files;
+        if (files.length > 0) {
+          await uploadImage(files[0]);
+        }
+      });
+
+      document.addEventListener("paste", async (event) => {
+        const items = (event.clipboardData || event.originalEvent.clipboardData)
+          .items;
+        for (const item of items) {
+          if (item.kind === "file") {
+            const blob = item.getAsFile();
+            if (blob) {
+              await uploadImage(blob);
+            }
+          }
+        }
+      });
+
+      async function uploadImage(file) {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        const response = await fetch("/remove_bg", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+          document.getElementById(
+            "result"
+          ).innerHTML = `<h2 class="text-2xl font-bold">Image without Background</h2><img src="${url}" alt="Image without background" class="mt-4 max-w-full h-auto">`;
+        } else {
+          const result = await response.json();
+          document.getElementById(
+            "result"
+          ).innerText = `Error: ${result.error}`;
+        }
+      }
+    </script>
+  </body>
+</html>
