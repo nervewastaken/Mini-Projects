@@ -1,0 +1,8 @@
+README.md
+setup.py
+skill_issue/__init__.py
+skill_issue/skill_issue.py
+skill_issue.egg-info/PKG-INFO
+skill_issue.egg-info/SOURCES.txt
+skill_issue.egg-info/dependency_links.txt
+skill_issue.egg-info/top_level.txt
